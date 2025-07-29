@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Vinuu Music Player</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>🎵 Vinuu Music Player</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <input type="file" name="file">
+        <button type="submit">Upload Song</button>
+    </form>
+    <h2>Playlist</h2>
+    {% for song in songs %}
+        <div class="song">
+            <p>{{ song }}</p>
+            <audio controls>
+                <source src="{{ url_for('static', filename='songs/' + song) }}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+        </div>
+    {% endfor %}
+</body>
+</html>
